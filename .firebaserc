@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "vup-terminal-app": {
+      "hosting": {
+        "angular-boilerplate": [
+          "vup-terminal-app"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "vup-terminal-app"
+  }
+}
