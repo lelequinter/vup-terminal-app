@@ -2,6 +2,7 @@ import { Component, Input, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ErrorMessageComponent } from './components/error-message/error-message.component';
 
 const actionType = {
   signIn: {
@@ -19,7 +20,7 @@ type ActionType = keyof typeof actionType;
 @Component({
   selector: 'app-auth-form',
   standalone: true,
-  imports: [CommonModule, RouterModule, ReactiveFormsModule],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule, ErrorMessageComponent],
   templateUrl: './auth-form.component.html',
   styleUrls: ['./auth-form.component.scss']
 })
@@ -29,7 +30,7 @@ export class AuthFormComponent implements OnInit {
   title!: string;
 
   private readonly fb = inject(FormBuilder);
-  private readonly emailPattern = '';
+  private readonly emailPattern: RegExp = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 
   ngOnInit(): void {
     this.title =
