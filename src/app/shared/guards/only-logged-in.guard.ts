@@ -10,6 +10,6 @@ export const onlyLoggedInGuard = () => {
   return authSvc.userState$
   .pipe(
     take(1),
-    tap( (isLoggedIn) => ( isLoggedIn ? true : router.navigate(['/user/sign-in'])))
+    tap( (isLoggedIn) => ( !!isLoggedIn ? true : router.navigate(['/user/sign-in'])))
   )
 };
