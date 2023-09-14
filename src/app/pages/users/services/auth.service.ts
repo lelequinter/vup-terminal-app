@@ -8,6 +8,7 @@ import {
   sendEmailVerification,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  sendPasswordResetEmail,
 } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { Auth as AuthFire } from "@firebase/auth";
@@ -77,6 +78,14 @@ export class AuthService {
   async sendEmailVerfication(user: User): Promise<void>{
     try {
       await sendEmailVerification(user);
+    } catch (error: unknown) {
+      console.log('error: ',error);
+    }
+  }
+
+  async sendPasswordResetEmail(email: string): Promise<void>{
+    try {
+      await sendPasswordResetEmail(this.auth,email);
     } catch (error: unknown) {
       console.log('error: ',error);
     }
