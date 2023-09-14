@@ -1,0 +1,31 @@
+<nav class="py-2 navbar navbar-expand-lg bg-white shadow-md">
+  <div class="flex flex-wrap w-full px-6">
+    <div class="lg:ml-auto">
+      <ng-container *ngIf="user$ | async as user; else showSignInUp">
+        {{ user.email }}
+        <a
+          routerLink="/user/sign-in"
+          (click)="onSignOut()"
+          class="ml-2 transition-colors hover:bg-gray-300 inline-block px-6 py-2.5 mr-2 font-medium text-md rounded"
+        >
+          Sign Out
+        </a>
+      </ng-container>
+
+      <ng-template #showSignInUp>
+        <a
+          routerLink="/user/sign-in"
+          class="transition-colors hover:bg-gray-300 inline-block px-6 py-2.5 mr-2 font-medium text-md rounded"
+        >
+          Sign In
+        </a>
+        <a
+          routerLink="/user/sign-up"
+          class="bg-blue-600 hover:bg-blue-500 text-white inline-block px-6 py-2 5 mr-2 font-medium text-md rounded"
+        >
+          Sign Up
+        </a>
+      </ng-template>
+    </div>
+  </div>
+</nav>
