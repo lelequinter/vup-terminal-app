@@ -51,8 +51,8 @@ export class AuthFormComponent implements OnInit {
     const {email, password} = this.form.value;
 
     this.action === actionType.signIn.action
-    ? 'signIn'
-    : 'signUp';
+    ? this.authSvc.signIn(email,password)
+    : this.authSvc.signUp(email,password);
   }
 
   hasError( field: string ): boolean {

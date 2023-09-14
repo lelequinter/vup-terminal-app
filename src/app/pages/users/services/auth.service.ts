@@ -26,7 +26,7 @@ export class AuthService {
   private readonly googleProvider = new GoogleAuthProvider();
 
   constructor() {
-    // this.signOut()
+    // this.signOut();
   }
 
   get userState$(){
@@ -57,9 +57,7 @@ export class AuthService {
   async signIn( email: string, password: string ): Promise<void>{
     try {
       const { user } = await signInWithEmailAndPassword(this.auth, email, password);
-      console.log(user);
       this.checkUserIsVerified(user);
-      // this.router.navigate(['/user/profile'])
     } catch (error: unknown) {
       const { code, message } = error as ErrorResponse;
 
@@ -84,8 +82,8 @@ export class AuthService {
     }
   }
 
-  private checkUserIsVerified(user: User): boolean {
-
-    return true;
+  private checkUserIsVerified(user: User): void {
+    const route = user.emailVerified ? '/home' : '/user/email-verification';
+    this.router.navigate([route]);
   }
 }
