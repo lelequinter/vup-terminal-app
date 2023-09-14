@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ErrorMessageComponent } from './components/error-message/error-message.component';
+import { AuthService } from '@app/pages/users/services/auth.service';
+import { Observable } from 'rxjs';
 
 const actionType = {
   signIn: {
@@ -29,6 +31,8 @@ export class AuthFormComponent implements OnInit {
   form!: FormGroup;
   title!: string;
 
+  user$!: Observable<any>;
+  private readonly authSvc = inject(AuthService);
   private readonly fb = inject(FormBuilder);
   private readonly emailPattern: RegExp = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 
@@ -39,6 +43,8 @@ export class AuthFormComponent implements OnInit {
     : actionType.signUp.title;
 
     this.initForm();
+
+    this.user$ = this.authSvc.userState$;
   }
 
   onSubmit(): void {
@@ -55,7 +61,7 @@ export class AuthFormComponent implements OnInit {
   }
 
   signInGoogle(): void {
-    //TODO
+    this.authSvc.signInGoogle();
   }
 
   private initForm(): void {
