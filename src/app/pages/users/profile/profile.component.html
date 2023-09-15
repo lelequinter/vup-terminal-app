@@ -1,1 +1,29 @@
-<p>profile works!</p>
+<section class="bg-gray-50 dark:bg-gray-900">
+  <div
+    style="height: calc(100dvh - 4.25rem); min-height: 25rem;"
+    class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+    <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <div class="flex flex-col items-center pb-10 mt-10">
+          <nz-avatar
+            class="mb-3"
+            [nzSize]="80"
+            [nzText]="avatarText"
+            style="color:#f56a00; background-color:#fde3cf; font-size: 36px;"
+            >
+          </nz-avatar>
+          <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white" >{{ user?.displayName || 'No name' }}</h5>
+          <span class="text-sm text-gray-500 dark:text-gray-400 my-2" > Last Sign In: {{ lastLogin ? lastLogin : '--- --- ---' }}</span>
+          <span class="text-sm text-gray-500 dark:text-gray-400" >{{ user?.email || 'No email' }}</span>
+          <span class="text-sm text-gray-500 dark:text-gray-400" >{{ user?.emailVerified ? 'Email verificado' : 'Email no verificado' }}</span>
+          <div class="flex mt-4 space-x-3 md:mt-6">
+              <a *ngIf="!user?.emailVerified" href="#" class="hover:text-white inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                Verify email
+              </a>
+              <a (click)="onSignOut()" class="hover:text-red-500 inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700">
+                Sign Out
+              </a>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>

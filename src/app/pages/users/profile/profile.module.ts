@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { ProfileRoutingModule } from './profile-routing.module';
 import { ProfileComponent } from './profile.component';
 
+//* Otras librearias
+import { NzAvatarModule } from "ng-zorro-antd/avatar";
 
 @NgModule({
   declarations: [
@@ -11,6 +13,7 @@ import { ProfileComponent } from './profile.component';
   ],
   imports: [
     CommonModule,
+    NzAvatarModule,
     ProfileRoutingModule
   ]
 })
