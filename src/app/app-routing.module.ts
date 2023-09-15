@@ -49,6 +49,7 @@ const routes: Routes = [
   // },
   {
     path: 'user/dashboard',
+    canActivate: [onlyLoggedInGuard],
     loadChildren: () =>
       import('./pages/users/dashboard/dashboard.module').then(
         (m) => m.DashboardModule
