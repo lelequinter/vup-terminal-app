@@ -42,11 +42,28 @@ const routes: Routes = [
         (m) => m.ForgotPasswordModule
       ),
   },
+  // {
+  //   path: 'home',
+  //   loadChildren: () =>
+  //     import('./pages/home/home.module').then((m) => m.HomeModule),
+  // },
   {
-    path: 'home',
+    path: 'user/dashboard',
     loadChildren: () =>
-      import('./pages/home/home.module').then((m) => m.HomeModule),
+      import('./pages/users/dashboard/dashboard.module').then(
+        (m) => m.DashboardModule
+      ),
   },
+  {
+    path: '',
+    redirectTo: 'user/profile',
+    pathMatch: 'full'
+  },
+  {
+    path: '**',
+    redirectTo: 'user/profile',
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({
