@@ -3,12 +3,12 @@ import {
   Auth,
   User,
   authState,
-  signInWithRedirect,
   GoogleAuthProvider,
   sendEmailVerification,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
+  signInWithPopup,
 } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { Auth as AuthFire } from "@firebase/auth";
@@ -36,7 +36,8 @@ export class AuthService {
 
   async signInGoogle(): Promise<void>{
     try {
-      await signInWithRedirect(this.auth, this.googleProvider);
+      const { user } = await signInWithPopup(this.auth, this.googleProvider);
+      this.checkUserIsVerified(user);
     } catch (error) {
       console.log('Google login', error);
     }
