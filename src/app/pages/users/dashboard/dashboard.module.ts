@@ -4,14 +4,16 @@ import { CommonModule } from '@angular/common';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 
-
+//* Otras librerias
+import { NzTableModule } from "ng-zorro-antd/table";
 @NgModule({
   declarations: [
     DashboardComponent
   ],
   imports: [
     CommonModule,
-    DashboardRoutingModule
+    NzTableModule,
+    DashboardRoutingModule,
   ]
 })
 export class DashboardModule { }
