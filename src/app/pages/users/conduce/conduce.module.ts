@@ -7,7 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 //* Otras librerias
 import { NzTimePickerModule } from "ng-zorro-antd/time-picker";
-
+import { NzSelectModule } from "ng-zorro-antd/select";
 
 @NgModule({
   declarations: [
@@ -15,6 +15,7 @@ import { NzTimePickerModule } from "ng-zorro-antd/time-picker";
   ],
   imports: [
     CommonModule,
+    NzSelectModule,
     NzTimePickerModule,
     ReactiveFormsModule,
     ConduceRoutingModule,

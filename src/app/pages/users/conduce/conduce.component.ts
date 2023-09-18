@@ -20,6 +20,26 @@ export class ConduceComponent {
   defaultOpenValue = new Date(0, 0, 0, 0, 0, 0);
   time: Date | null = new Date();
 
+  // todo: Crear la interface del arreglo
+  empresas: any[] = [
+    {
+      value: '01',
+      label: '01 COOTRAMEQUE'
+    },
+    {
+      value: '02',
+      label: '02 EXPRESO BRASILIA'
+    },
+    {
+      value: '03',
+      label: '03 COOTRACOSTA'
+    },
+    {
+      value: '04',
+      label: '04 LA VELOZ COSTEÑA'
+    },
+  ]
+
   reset(){
     this.conduceForm.reset();
   }
