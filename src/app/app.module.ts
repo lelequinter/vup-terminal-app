@@ -5,6 +5,7 @@ import en from '@angular/common/locales/en';
 import { provideHttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +23,7 @@ registerLocaleData(en);
     BrowserModule,
     NavbarComponent,
     AppRoutingModule,
+    BrowserAnimationsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => {
       const auth = getAuth();
@@ -34,7 +36,7 @@ registerLocaleData(en);
       return firestore;
     }),
   ],
-  providers: [provideHttpClient()],
+  providers: [provideHttpClient(), { provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

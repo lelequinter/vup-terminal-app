@@ -17,5 +17,15 @@ export class ConduceComponent {
     numeroConduce: [null, Validators.required],
   })
 
+  defaultOpenValue = new Date(0, 0, 0, 0, 0, 0);
+  time: Date | null = new Date();
 
+  reset(){
+    this.conduceForm.reset();
+  }
+
+  save(){
+    console.log(this.conduceForm.value);
+
+  }
 }
