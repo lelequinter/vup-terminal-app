@@ -40,6 +40,26 @@ export class ConduceComponent {
     },
   ]
 
+  // todo: Crear la interface del arreglo
+  ciudades: any[] = [
+    {
+      value: '08',
+      label: '08 AGUACHICA'
+    },
+    {
+      value: '32',
+      label: '32 ARACATACA'
+    },
+    {
+      value: '41',
+      label: '41 ASTREA'
+    },
+    {
+      value: '01',
+      label: '01 BUCARAMANGA'
+    },
+  ]
+
   reset(){
     this.conduceForm.reset();
   }
