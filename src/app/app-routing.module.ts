@@ -56,15 +56,22 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'user/conduce',
+    loadChildren: () =>
+      import('./pages/users/conduce/conduce.module').then(
+        (m) => m.ConduceModule
+      ),
+  },
+  {
     path: '',
     redirectTo: 'user/profile',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: '**',
     redirectTo: 'user/profile',
-    pathMatch: 'full'
-  }
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({
