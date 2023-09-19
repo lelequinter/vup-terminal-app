@@ -24,19 +24,19 @@ export class ConduceComponent {
   empresas: any[] = [
     {
       value: '01',
-      label: '01 COOTRAMEQUE'
+      label: '01 - COOTRAMEQUE'
     },
     {
       value: '02',
-      label: '02 EXPRESO BRASILIA'
+      label: '02 - EXPRESO BRASILIA'
     },
     {
       value: '03',
-      label: '03 COOTRACOSTA'
+      label: '03 - COOTRACOSTA'
     },
     {
       value: '04',
-      label: '04 LA VELOZ COSTEÑA'
+      label: '04 - LA VELOZ COSTEÑA'
     },
   ]
 
@@ -44,19 +44,19 @@ export class ConduceComponent {
   ciudades: any[] = [
     {
       value: '08',
-      label: '08 AGUACHICA'
+      label: '08 - AGUACHICA'
     },
     {
       value: '32',
-      label: '32 ARACATACA'
+      label: '32 - ARACATACA'
     },
     {
       value: '41',
-      label: '41 ASTREA'
+      label: '41 - ASTREA'
     },
     {
       value: '01',
-      label: '01 BUCARAMANGA'
+      label: '01 - BUCARAMANGA'
     },
   ]
 
