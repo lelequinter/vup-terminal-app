@@ -57,6 +57,7 @@ const routes: Routes = [
   },
   {
     path: 'user/conduce',
+    canActivate: [onlyLoggedInGuard],
     loadChildren: () =>
       import('./pages/users/conduce/conduce.module').then(
         (m) => m.ConduceModule
