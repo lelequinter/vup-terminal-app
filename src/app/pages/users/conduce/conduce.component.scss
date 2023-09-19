@@ -9,6 +9,19 @@
 }
 
 :host::ng-deep {
+  input {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+
+    &:focus{
+      border-color: #1890ff;
+    }
+  }
+
+  nz-select.ant-select-focused{
+    border-color: #1890ff;
+  }
+
   nz-select nz-select-top-control {
     background: transparent;
     border: none;
@@ -25,5 +38,19 @@
     .ant-select-selector {
       border: none;
       box-shadow: none;
+  }
+
+  .ant-picker-focused{
+    box-shadow: none;
+    border-color: #1890ff;
+  }
+
+  .ant-picker-input > input{
+    padding-top: 0.6875rem;
+    padding-bottom: 0.6875rem;
+  }
+
+  .ant-picker:hover{
+    @apply border-gray-300;
   }
 }
