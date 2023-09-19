@@ -71,6 +71,7 @@ export class ConduceComponent {
       {
         nzDuration: 2000,
         nzStyle: {
+          top: '60px',
           width: '400px',
           background: '#e6f7ff',
           border: '1px solid #91d5ff',
@@ -88,8 +89,9 @@ export class ConduceComponent {
         'error',
         'Todos los campos son requeridos','',
         {
-          nzDuration: 3000,
+          nzDuration: 2000,
           nzStyle: {
+            top: '60px',
             width: '400px',
             background: '#fff2f0',
             border: '1px solid #ffccc7',
@@ -109,12 +111,15 @@ export class ConduceComponent {
           nzKey: 'validNotification',
           nzDuration: 0,
           nzPauseOnHover: true,
+          nzCloseIcon: 'loading',
           nzStyle: {
+            top: '60px',
             width: '400px',
             background: '#e6f7ff',
             border: '1px solid #91d5ff',
             borderRadius: '20px'
           },
+          nzClass: 'loading-notification',
         }
       );
 
@@ -126,11 +131,14 @@ export class ConduceComponent {
             nzKey: 'validNotification',
             nzDuration: 2000,
             nzPauseOnHover: true,
+            nzCloseIcon: 'close',
             nzStyle: {
+              top: '60px',
               width: '400px',
               background: '#f6ffed',
               border: '1px solid #b7eb8f',
-              borderRadius: '20px'
+              borderRadius: '20px',
+              nzClass: 'loading-notification-completed',
             },
           }
         );

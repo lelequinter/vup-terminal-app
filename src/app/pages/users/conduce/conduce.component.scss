@@ -6,6 +6,15 @@
     button {
     background: #1890ff !important;
   }
+
+  //! Estilos de las notificaciones
+  .ant-notification-notice.loading-notification .ant-notification-notice-close{
+    display: none !important;
+  }
+
+  .ant-notification-notice.loading-notification-completed .ant-notification-notice-close{
+    display: flex !important;
+  }
 }
 
 :host::ng-deep {
