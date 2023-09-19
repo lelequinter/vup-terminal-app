@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 //* Otras librerias
 import { NzTimePickerModule } from "ng-zorro-antd/time-picker";
 import { NzSelectModule } from "ng-zorro-antd/select";
+import { NgxMaskModule } from "ngx-mask";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { NzSelectModule } from "ng-zorro-antd/select";
     NzTimePickerModule,
     ReactiveFormsModule,
     ConduceRoutingModule,
+    NgxMaskModule.forRoot(),
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class ConduceModule { }
