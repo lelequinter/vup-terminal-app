@@ -40,7 +40,16 @@
       box-shadow: none;
   }
 
+  .ant-picker:hover{
+    @apply border-gray-300;
+  }
+
   .ant-picker-focused{
+    box-shadow: none;
+    border-color: #1890ff;
+  }
+
+  .ant-picker-focused:hover{
     box-shadow: none;
     border-color: #1890ff;
   }
@@ -48,9 +57,5 @@
   .ant-picker-input > input{
     padding-top: 0.6875rem;
     padding-bottom: 0.6875rem;
-  }
-
-  .ant-picker:hover{
-    @apply border-gray-300;
   }
 }
