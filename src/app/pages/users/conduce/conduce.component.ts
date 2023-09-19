@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 @Component({
   selector: 'app-conduce',
@@ -8,6 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ConduceComponent {
   private readonly fb = inject(FormBuilder);
+  private readonly notification = inject(NzNotificationService);
 
   conduceForm: FormGroup = this.fb.group({
     empresa: [null, Validators.required],
@@ -62,10 +64,83 @@ export class ConduceComponent {
 
   reset(){
     this.conduceForm.reset();
+
+    this.notification.create(
+      'info',
+      'Formulario reseteado','',
+      {
+        nzDuration: 2000,
+        nzStyle: {
+          width: '400px',
+          background: '#e6f7ff',
+          border: '1px solid #91d5ff',
+          borderRadius: '20px'
+        },
+      }
+    );
   }
 
   save(){
     console.log(this.conduceForm.value);
 
+    if( this.conduceForm.invalid ){
+      this.notification.create(
+        'error',
+        'Todos los campos son requeridos','',
+        {
+          nzDuration: 3000,
+          nzStyle: {
+            width: '400px',
+            background: '#fff2f0',
+            border: '1px solid #ffccc7',
+            borderRadius: '20px'
+          },
+        }
+      );
+    }
+
+    if( this.conduceForm.valid ){
+      // todo: construir el body de la info a guardar en bd
+
+      const succe = this.notification.create(
+        'info',
+        'Guardando información... ','',
+        {
+          nzKey: 'validNotification',
+          nzDuration: 0,
+          nzPauseOnHover: true,
+          nzStyle: {
+            width: '400px',
+            background: '#e6f7ff',
+            border: '1px solid #91d5ff',
+            borderRadius: '20px'
+          },
+        }
+      );
+
+      setTimeout(() => {
+        this.notification.create(
+          'success',
+          'Información guardada','',
+          {
+            nzKey: 'validNotification',
+            nzDuration: 2000,
+            nzPauseOnHover: true,
+            nzStyle: {
+              width: '400px',
+              background: '#f6ffed',
+              border: '1px solid #b7eb8f',
+              borderRadius: '20px'
+            },
+          }
+        );
+
+        setTimeout(() => {
+          this.notification.remove(succe.messageId);
+        }, 2000);
+      }, 2000);
+
+    }
   }
+
 }
