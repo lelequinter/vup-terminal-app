@@ -15,6 +15,10 @@
   .ant-notification-notice.loading-notification-completed .ant-notification-notice-close{
     display: flex !important;
   }
+
+  .ant-notification-notice .ant-notification-notice-content .ant-notification-notice-with-icon .ant-notification-notice-icon{
+    display: flex;
+  }
 }
 
 :host::ng-deep {

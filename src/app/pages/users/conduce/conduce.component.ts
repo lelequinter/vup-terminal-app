@@ -62,6 +62,8 @@ export class ConduceComponent {
     },
   ]
 
+  loading: boolean = false;
+
   reset(){
     this.conduceForm.reset();
 
@@ -106,7 +108,7 @@ export class ConduceComponent {
 
       const succe = this.notification.create(
         'info',
-        'Guardando información... ','',
+        'Guardando información ... ','',
         {
           nzKey: 'validNotification',
           nzDuration: 0,
