@@ -1,6 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { DataBaseService, conduceData } from '../services/data-base.service';
+import { DateTime } from 'luxon';
 
 @Component({
   selector: 'app-conduce',
@@ -10,6 +12,7 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
 export class ConduceComponent {
   private readonly fb = inject(FormBuilder);
   private readonly notification = inject(NzNotificationService);
+  private readonly dbSvc = inject(DataBaseService);
 
   conduceForm: FormGroup = this.fb.group({
     empresa: [null, Validators.required],
@@ -83,15 +86,14 @@ export class ConduceComponent {
     );
   }
 
-  save(){
-    console.log(this.conduceForm.value);
-
+  async save(){
     if( this.conduceForm.invalid ){
       this.notification.create(
         'error',
         'Todos los campos son requeridos','',
         {
           nzDuration: 2000,
+          nzPauseOnHover: true,
           nzStyle: {
             top: '60px',
             width: '400px',
@@ -104,7 +106,12 @@ export class ConduceComponent {
     }
 
     if( this.conduceForm.valid ){
-      // todo: construir el body de la info a guardar en bd
+      const { hora, ...rest  } = this.conduceForm?.value
+
+      const body: conduceData = {
+        ...rest,
+        horaSalida: DateTime.fromJSDate(hora).toFormat('hh:mm a'),
+      }
 
       this.loading = true;
       const succe = this.notification.create(
@@ -125,8 +132,13 @@ export class ConduceComponent {
         }
       );
 
-      setTimeout(() => {
+      try {
+        await this.dbSvc.addData(body);
+
+        this.conduceForm.reset();
+
         this.loading = false;
+
         this.notification.create(
           'success',
           'Información guardada','',
@@ -148,8 +160,32 @@ export class ConduceComponent {
         setTimeout(() => {
           this.notification.remove(succe.messageId);
         }, 2000);
-      }, 2000);
 
+      } catch (error) {
+
+        this.loading = false;
+
+        this.notification.create(
+          'error',
+          'Ha ocurrido un error, vuelva a intentarlo','',
+          {
+            nzKey: 'validNotification',
+            nzDuration: 2000,
+            nzPauseOnHover: true,
+            nzStyle: {
+              top: '60px',
+              width: '400px',
+              background: '#fff2f0',
+              border: '1px solid #ffccc7',
+              borderRadius: '20px'
+            },
+          }
+        );
+
+        setTimeout(() => {
+          this.notification.remove(succe.messageId);
+        }, 3000);
+      }
     }
   }
 
