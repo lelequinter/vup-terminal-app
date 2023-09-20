@@ -26,9 +26,22 @@
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
 
-    &:focus{
+    &.ant-input{
+      outline: none;
+    }
+
+    &.ant-input:hover{
+      border-color: #d9d9d9;
+    }
+
+    &.ant-input:focus{
       border-color: #1890ff;
     }
+
+    &.ant-input:focus, .ant-input-focused{
+      box-shadow: none;
+    }
+
   }
 
   nz-select.ant-select-focused{

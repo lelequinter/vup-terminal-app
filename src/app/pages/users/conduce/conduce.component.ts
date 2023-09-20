@@ -5,7 +5,7 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
 @Component({
   selector: 'app-conduce',
   templateUrl: './conduce.component.html',
-  styleUrls: ['./conduce.component.scss']
+  styleUrls: ['./conduce.component.scss'],
 })
 export class ConduceComponent {
   private readonly fb = inject(FormBuilder);
@@ -106,6 +106,7 @@ export class ConduceComponent {
     if( this.conduceForm.valid ){
       // todo: construir el body de la info a guardar en bd
 
+      this.loading = true;
       const succe = this.notification.create(
         'info',
         'Guardando información ... ','',
@@ -113,7 +114,6 @@ export class ConduceComponent {
           nzKey: 'validNotification',
           nzDuration: 0,
           nzPauseOnHover: true,
-          nzCloseIcon: 'loading',
           nzStyle: {
             top: '60px',
             width: '400px',
@@ -126,6 +126,7 @@ export class ConduceComponent {
       );
 
       setTimeout(() => {
+        this.loading = false;
         this.notification.create(
           'success',
           'Información guardada','',
@@ -133,7 +134,6 @@ export class ConduceComponent {
             nzKey: 'validNotification',
             nzDuration: 2000,
             nzPauseOnHover: true,
-            nzCloseIcon: 'close',
             nzStyle: {
               top: '60px',
               width: '400px',
