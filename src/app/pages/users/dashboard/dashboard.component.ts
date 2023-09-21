@@ -1,11 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { conduceData, DataBaseService } from '../services/data-base.service';
+
+interface ITableData extends conduceData{
+  id: string
+}
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
+  private readonly dbSvc = inject(DataBaseService);
+
+  tableData!: ITableData[];
+
   listOfData: any[] = [
     {
       key: '1',
@@ -26,4 +35,10 @@ export class DashboardComponent {
       address: 'Sidney No. 1 Lake Park'
     }
   ];
+
+  async ngOnInit(): Promise<void> {
+
+    this.tableData  = await this.dbSvc.getData('conduceDb');
+  }
+
 }

@@ -1,22 +1,25 @@
-<p>dashbar !!</p>
-
-<nz-table #basicTable [nzData]="listOfData">
+<nz-table #basicTable [nzData]="tableData" [nzShowPagination]="false">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Age</th>
-      <th>Address</th>
-      <th>Action</th>
+      <th></th>
+      <th>Placa</th>
+      <th>Empresa</th>
+      <th>Destino</th>
+      <th>Hora de Salida</th>
+      <th>Número de conduce</th>
+      <th>Acciones</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let data of basicTable.data">
-      <td>{{data.name}}</td>
-      <td>{{data.age}}</td>
-      <td>{{data.address}}</td>
+    <tr *ngFor="let data of basicTable.data; let i = index">
+      <td class="text-center">{{i}}</td>
+      <td>{{data.placa}}</td>
+      <td>{{data.empresa}}</td>
+      <td>{{data.destino}}</td>
+      <td>{{data.horaSalida}}</td>
+      <td>{{data.numeroConduce}}</td>
       <td>
-        <a>Action 一 {{data.name}}</a>
-        <!-- <nz-divider nzType="vertical"></nz-divider> -->
+        <a>Action </a>
         <a>Delete</a>
       </td>
     </tr>

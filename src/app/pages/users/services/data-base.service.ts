@@ -7,6 +7,11 @@ import {
   updateDoc,
   collection,
   collectionData,
+  getDoc,
+  getDocs,
+  query,
+  QuerySnapshot,
+  Query
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
@@ -24,16 +29,20 @@ export interface conduceData {
 export class DataBaseService {
   private readonly firestore = inject(Firestore);
 
-  constructor() { }
-
   addData(collectionName: string, data: conduceData): Promise<any>{
     const collectionInstance = collection(this.firestore, collectionName);
     return addDoc( collectionInstance, data );
   }
 
-  getData(collectionName: string): Observable<any>{
-    const collectionInstance = collection(this.firestore, collectionName);
-    return collectionData(collectionInstance, { idField: 'id' });
+  async getData(collectionName: string): Promise<any[]>{
+    const q: Query<any> = collection(this.firestore, collectionName);
+    const querySnapshot: QuerySnapshot<any> = await getDocs(q);
+
+    const data = querySnapshot.docs.map( doc => {
+      return {id: doc.id, ...doc.data()}
+    })
+
+    return data;
   }
 
 }
