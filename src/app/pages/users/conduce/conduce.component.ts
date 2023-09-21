@@ -133,7 +133,7 @@ export class ConduceComponent {
       );
 
       try {
-        await this.dbSvc.addData(body);
+        await this.dbSvc.addData('conduceDb',body);
 
         this.conduceForm.reset();
 

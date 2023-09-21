@@ -8,6 +8,7 @@ import {
   collection,
   collectionData,
 } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 export interface conduceData {
   placa: string;
@@ -25,10 +26,14 @@ export class DataBaseService {
 
   constructor() { }
 
-  async addData(data: conduceData): Promise<any>{
-    const collectionInstance = collection(this.firestore,'conduceDb');
+  addData(collectionName: string, data: conduceData): Promise<any>{
+    const collectionInstance = collection(this.firestore, collectionName);
+    return addDoc( collectionInstance, data );
+  }
 
-    return await addDoc( collectionInstance, data );
+  getData(collectionName: string): Observable<any>{
+    const collectionInstance = collection(this.firestore, collectionName);
+    return collectionData(collectionInstance, { idField: 'id' });
   }
 
 }
