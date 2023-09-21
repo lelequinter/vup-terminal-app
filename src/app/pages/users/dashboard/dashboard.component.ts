@@ -15,30 +15,35 @@ export class DashboardComponent implements OnInit {
 
   tableData!: ITableData[];
 
-  listOfData: any[] = [
-    {
-      key: '1',
-      name: 'John Brown',
-      age: 32,
-      address: 'New York No. 1 Lake Park'
-    },
-    {
-      key: '2',
-      name: 'Jim Green',
-      age: 42,
-      address: 'London No. 1 Lake Park'
-    },
-    {
-      key: '3',
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park'
-    }
-  ];
+  loading: boolean = false;
 
   async ngOnInit(): Promise<void> {
-
-    this.tableData  = await this.dbSvc.getData('conduceDb');
+    await this.getTableData();
   }
 
+  async getTableData(): Promise<void>{
+    this.loading = true;
+    try {
+      this.tableData  = await this.dbSvc.getData('conduceDb');
+      this.loading = false
+    } catch (error) {
+      this.loading = false
+      console.log(error);
+    }
+  }
+
+  async add(): Promise<void>{
+    const body = {
+      empresa: "03",
+      placa: "CRA123",
+      destino: "41",
+      numeroConduce: "555",
+      horaSalida: "04:33 PM"
+    }
+
+    this.loading = true;
+    await this.dbSvc.addData('conduceDb', body);
+    await this.getTableData();
+    this.loading = false;
+  }
 }

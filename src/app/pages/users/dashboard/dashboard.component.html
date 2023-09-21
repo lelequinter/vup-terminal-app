@@ -1,4 +1,10 @@
-<nz-table #basicTable [nzData]="tableData" [nzShowPagination]="false">
+<nz-table
+  #basicTable
+  [nzData]="tableData"
+  [nzShowPagination]="false"
+  [nzLoading]="loading"
+  [nzNoResult]="loading ? 'Cargando información...' : 'No se encontraron datos'"
+  >
   <thead>
     <tr>
       <th></th>
@@ -6,7 +12,7 @@
       <th>Empresa</th>
       <th>Destino</th>
       <th>Hora de Salida</th>
-      <th>Número de conduce</th>
+      <th>Conduce</th>
       <th>Acciones</th>
     </tr>
   </thead>

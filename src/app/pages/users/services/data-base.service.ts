@@ -1,15 +1,10 @@
 import { Injectable, inject } from '@angular/core';
 import {
-  doc,
   addDoc,
-  deleteDoc,
   Firestore,
-  updateDoc,
   collection,
   collectionData,
-  getDoc,
   getDocs,
-  query,
   QuerySnapshot,
   Query
 } from '@angular/fire/firestore';
@@ -29,6 +24,10 @@ export interface conduceData {
 export class DataBaseService {
   private readonly firestore = inject(Firestore);
 
+  constructor(){
+    this.test();
+  }
+
   addData(collectionName: string, data: conduceData): Promise<any>{
     const collectionInstance = collection(this.firestore, collectionName);
     return addDoc( collectionInstance, data );
@@ -43,6 +42,20 @@ export class DataBaseService {
     })
 
     return data;
+  }
+
+  test(){
+    const collectionInstance = collection(this.firestore, 'conduceDb');
+
+    collectionData(collectionInstance, { idField: 'id' }).subscribe({
+      next: (value) => {
+        console.log(value);
+
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
   }
 
 }
