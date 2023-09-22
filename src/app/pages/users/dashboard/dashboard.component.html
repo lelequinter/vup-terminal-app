@@ -1,9 +1,11 @@
 <nz-table
   #basicTable
-  [nzData]="tableData"
-  [nzShowPagination]="false"
+  [nzData]="tableData2 | async"
   [nzLoading]="loading"
   [nzNoResult]="loading ? 'Cargando información...' : 'No se encontraron datos'"
+  [nzPageSize]="10"
+  [nzShowSizeChanger]="true"
+  [nzPageSizeOptions]="[10, 20, 30, 40]"
   >
   <thead>
     <tr>
@@ -18,14 +20,14 @@
   </thead>
   <tbody>
     <tr *ngFor="let data of basicTable.data; let i = index">
-      <td class="text-center">{{i}}</td>
+      <td class="text-center">{{i + 1 }}</td>
       <td>{{data.placa}}</td>
       <td>{{data.empresa}}</td>
       <td>{{data.destino}}</td>
       <td>{{data.horaSalida}}</td>
       <td>{{data.numeroConduce}}</td>
       <td>
-        <a>Action </a>
+        <a>Editar </a>
         <a>Delete</a>
       </td>
     </tr>

@@ -6,9 +6,11 @@ import {
   collectionData,
   getDocs,
   QuerySnapshot,
-  Query
+  Query,
+  onSnapshot,
+  Unsubscribe
 } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 export interface conduceData {
   placa: string;
@@ -22,10 +24,10 @@ export interface conduceData {
   providedIn: 'root'
 })
 export class DataBaseService {
-  private readonly firestore = inject(Firestore);
+  private firestore = inject(Firestore);
 
   constructor(){
-    this.test();
+    // this.getDataRt();
   }
 
   addData(collectionName: string, data: conduceData): Promise<any>{
@@ -44,18 +46,35 @@ export class DataBaseService {
     return data;
   }
 
-  test(){
-    const collectionInstance = collection(this.firestore, 'conduceDb');
+  //! Datos en tiempo real de la base de datos
+  unsubscribe!: Unsubscribe;
 
-    collectionData(collectionInstance, { idField: 'id' }).subscribe({
-      next: (value) => {
-        console.log(value);
+  dbDataRt$: BehaviorSubject<any> = new BehaviorSubject(null);
 
+  getDataRt(){
+    const collectionInstance = collection(this.firestore,'conduceDb');
+
+    this.unsubscribe = onSnapshot(collectionInstance,
+      (querySnapshot) => {
+        const data = querySnapshot.docs.map( doc => {
+          return {id: doc.id, ...doc.data()}
+        })
+
+        this.dbDataRt$.next(data);
       },
-      error: (err) => {
-        console.log(err);
+      (error) => {
+        console.log(`Error Obteniendo los datos ${error}`);
+      },
+      () => {
+        console.log('terminado de cargar');
       }
-    })
+    );
+  }
+
+  destroyOnSnapshot(){
+    if(this.unsubscribe){
+      this.unsubscribe();
+    }
   }
 
 }
